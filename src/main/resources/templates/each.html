@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Item List</h1>
+<div>
+  <!--  ItemList 의 아이템 하나당 하나의 p 태그를 만들고 싶다. -->
+  <!-- 반복을 하고자 하는 요소에 th:each 붙여주기 -->
+  <p th:each="item : ${itemList}" >
+    [[${item}]]
+  </p>
+</div>
+
+<h1>Student List</h1>
+<!--
+학명의 학생마다
+<div>
+  <p>이름: 이름</p>
+  <p>이메일: 이메일</p>
+</div>
+반복되므로 th:each 는 div에 붙여주기
+-->
+<!-- 만약 studentList가 비어있을 경우 -->
+<!-- studentList.isEmpty() == true -->
+<div th:if="${studentList.isEmpty()}">
+  <p>No Student Here...</p>
+</div>
+<!-- 한명이라도 student가 있는 경우 -->
+<div
+        th:unless="${studentList.isEmpty()}"
+        th:each="student : ${studentList}"
+
+>
+  <hr>
+  <p>이름 : [[${student.name}]]</p>
+  <p>이메일 : [[${student.email}]]</p>
+</div>
+
+</body>
+</html>
